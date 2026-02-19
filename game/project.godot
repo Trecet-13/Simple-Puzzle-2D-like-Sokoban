@@ -14,6 +14,25 @@ config/name="Puzzle 2D like Sokoban"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Global="*uid://c02sqcd7vw6wy"
+
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/stretch/mode="canvas_items"
+
+[file_customization]
+
+folder_colors={
+"res://assets/": "red",
+"res://levels/": "purple",
+"res://scenes/": "green",
+"res://scripts/": "yellow"
+}
+
 [physics]
 
 3d/physics_engine="Jolt Physics"

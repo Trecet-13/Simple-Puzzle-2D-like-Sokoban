@@ -1,4 +1,4 @@
-extends Node
+class_name GlobalUtils extends Node
 
 ## PROPIEDADES
 const TILE_SIZE : int = 64

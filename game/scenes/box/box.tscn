@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://cp44xs0jor60n"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_51kwt"]
+size = Vector2(64, 64)
+
+[node name="Box" type="Node2D" unique_id=1628842307]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1123073761]
+texture = SubResource("PlaceholderTexture2D_51kwt")
+centered = false

@@ -1,0 +1,47 @@
+class_name LevelManager extends Node
+
+## PROPIEDADES
+const SCENE_LEVEL : PackedScene = preload("res://scenes/level/level.tscn")
+var id_level: int = 0
+
+## METODOS
+func load_level_from_csv(path: String) -> Dictionary: # Obtener los datos del nivel desde el CSV y los devuelve en diccionario
+	var file := FileAccess.open(path, FileAccess.READ)
+	if not file:
+		push_error("No se pudo abrir el archivo")
+		return {}
+
+	var walls: Array[Vector2i] = []
+	var boxes: Array[Vector2i] = []
+	var targets: Array[Vector2i] = []
+	var player: Vector2i
+	
+	var y := 0
+
+	while file.get_position() < file.get_length():
+		var row: PackedStringArray = file.get_csv_line()
+
+		if row.is_empty():
+			continue
+
+		for x in row.size():
+			var value := row[x].strip_edges()
+			var pos : Vector2i = Vector2i(x, y)
+
+			match value:
+				"w":
+					walls.append(pos)
+				"b":
+					boxes.append(pos)
+				"t":
+					targets.append(pos)
+				"p":
+					player = pos
+
+		y += 1
+
+	file.close()
+	return { "walls": walls, "boxes": boxes, "targets": targets, "player": player }
+
+func change_level():
+	pass

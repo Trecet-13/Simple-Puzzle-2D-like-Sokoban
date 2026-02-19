@@ -14,9 +14,6 @@ var width : int # x
 ## ACCIONES
 
 ## MÉTODOS
-func init_grid(walls: Array[Vector2i], boxes: Array[Vector2i], targets: Array[Vector2i], h: int, w: int, p: int):
-	pass
-
 func is_inside_grid(cell: Vector2i) -> bool: # comprueba que la posición dada este dentro de los límites
 	return cell.x >= 0 and cell.x < width and cell.y >= 0 and cell.x < height
 

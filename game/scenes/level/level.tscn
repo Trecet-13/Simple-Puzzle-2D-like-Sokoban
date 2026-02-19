@@ -345,10 +345,11 @@ terrain_set_0/terrain_0/name = "Walls"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/0 = SubResource("TileSetAtlasSource_qkmgm")
 
-[node name="Level" type="Node2D" unique_id=196313023 node_paths=PackedStringArray("tile_set", "entities_container")]
+[node name="Level" type="Node2D" unique_id=196313023 node_paths=PackedStringArray("tile_set", "entities_container", "grid_manager")]
 script = ExtResource("1_qkmgm")
 tile_set = NodePath("TileMapLayer")
 entities_container = NodePath("Entities")
+grid_manager = NodePath("GridManager")
 
 [node name="BackGround" type="Sprite2D" parent="." unique_id=733906104]
 texture = ExtResource("1_nbgty")

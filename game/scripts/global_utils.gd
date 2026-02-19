@@ -2,6 +2,7 @@ class_name GlobalUtils extends Node
 
 ## PROPIEDADES
 const TILE_SIZE : int = 64
+var level_id : int
 
 ## MÉTODOS
 static func grid_to_world(grid_pos: Vector2i) -> Vector2i:

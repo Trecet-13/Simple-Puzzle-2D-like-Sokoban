@@ -5,7 +5,6 @@ class_name LevelManager extends Node
 
 ## PROPIEDADES
 const SCENE_LEVEL : PackedScene = preload("res://scenes/level/level.tscn")
-var id_level: int = 0
 
 ## METODOS
 func load_level_from_txt(path: String) -> Dictionary: # Obtener los datos del nivel desde el CSV y los devuelve en diccionario

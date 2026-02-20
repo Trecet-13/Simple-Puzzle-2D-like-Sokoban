@@ -1,17 +1,8 @@
-wwwwwwwwwwwwwwwwwwwwwwwwwwwwww
-w                            w
-w                            w
-w       ttt           b     ww
-w                            w
-w                           ww
-w                 www        w
-w           p                w
-w                            w
-wwwwwww                      w
-w     w                      w
-w     w                      w
-w     w     b         b      w
-w     w                      w
-w     w                      w
-w                            w
-wwwwwwwwwwwwwwwwwwwwwwwwwwwwww
+wwwwwwww
+w      w
+w  b   w
+w      w
+w  p   w
+w   t  w
+w      w
+wwwwwwww

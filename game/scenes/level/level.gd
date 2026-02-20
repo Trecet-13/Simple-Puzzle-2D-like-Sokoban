@@ -5,7 +5,6 @@ class_name Level extends Node2D
 @export var entities_container : Node2D
 @export var grid_manager : GridManager
 @export var camera: CamaraLevel
-@export var tile_border : TileMapLayer
 
 ## PROPIEDADES
 const SCENE_PLAYER : PackedScene = preload("res://scenes/player/player.tscn")
@@ -50,34 +49,16 @@ func _init_targets(targets: Array[Vector2i]) -> void:
 		target.position = GlobalUtils.grid_to_world(cell)
 
 func generate_border() -> void:
-	var viewport_size = get_viewport().get_visible_rect().size
-	
-	var zoom = camera.zoom.x
-	var world_width = viewport_size.x / zoom
-	var world_height = viewport_size.y / zoom
-	
-	var visible_tiles_x = ceil(world_width / Global.TILE_SIZE)
-	var visible_tiles_y = ceil(world_height / Global.TILE_SIZE)
-	
-	var half_visible_x = int(visible_tiles_x / 2)
-	var half_visible_y = int(visible_tiles_y / 2)
-	
-	var visible_rect = {
-		"min_x": -half_visible_x,
-		"max_x": half_visible_x - 1,
-		"min_y": -half_visible_y,
-		"max_y": half_visible_y - 1
-	}
-
-	@warning_ignore("integer_division")
-	var half_level_x = int(grid_manager.width / 2)
-	@warning_ignore("integer_division")
-	var half_level_y = int(grid_manager.height / 2)
-
-	var level_rect = {
-		"min_x": 0,
-		"max_x": half_level_x * 2 - 1,
-		"min_y": 0,
-		"max_y": half_level_y * 2 - 1
-	}
-	tile_border.generate_border(visible_rect, level_rect)
+	var viewport_size : Vector2 = get_viewport_rect().size
+# Obtener el numero de celdas visibles
+	var x : int = ceil( viewport_size.x / ( Global.TILE_SIZE * camera.zoom.x) )
+	if x % 2 != 0:
+		x += 1
+	var y : int = ceil( viewport_size.y / ( Global.TILE_SIZE * camera.zoom.x) )
+	if y % 2 != 0:
+		y += 1
+	var visible_grid_size : Vector2i = Vector2i(x, y)
+	var grid_size : Vector2i = Vector2i(grid_manager.width, grid_manager.height)
+	var spare_grid : Vector2i = visible_grid_size - grid_size
+	var centred_spare_grid : Vector2i = spare_grid / 2
+	tile_set.set_cells_terrain_connect(GlobalUtils.get_matrix_difference(centred_spare_grid, grid_size) + tile_set.get_used_cells(),0,0)

@@ -4,16 +4,14 @@
 [ext_resource type="Script" uid="uid://okxd6aa687i5" path="res://scenes/level/level.gd" id="1_qkmgm"]
 [ext_resource type="TileSet" uid="uid://tjreto3vw6og" path="res://assets/tile_sets/terrain_tile_set.tres" id="3_hnne4"]
 [ext_resource type="PackedScene" uid="uid://cj108e68glqa3" path="res://scenes/grid_manager/grid_manager.tscn" id="4_hnne4"]
-[ext_resource type="Script" uid="uid://djnwxmb15i4nu" path="res://scenes/level/tile_border.gd" id="4_vpf64"]
 [ext_resource type="Script" uid="uid://d3fcfcul1ulxb" path="res://scenes/level/camara_level.gd" id="5_hnne4"]
 
-[node name="Level" type="Node2D" unique_id=196313023 node_paths=PackedStringArray("tile_set", "entities_container", "grid_manager", "camera", "tile_border")]
+[node name="Level" type="Node2D" unique_id=196313023 node_paths=PackedStringArray("tile_set", "entities_container", "grid_manager", "camera")]
 script = ExtResource("1_qkmgm")
 tile_set = NodePath("TileGame")
 entities_container = NodePath("Entities")
 grid_manager = NodePath("GridManager")
 camera = NodePath("CamaraLevel")
-tile_border = NodePath("TileBorder")
 
 [node name="BackGround" type="Sprite2D" parent="." unique_id=733906104]
 texture = ExtResource("1_nbgty")
@@ -21,10 +19,6 @@ centered = false
 
 [node name="TileGame" type="TileMapLayer" parent="." unique_id=1286724842]
 tile_set = ExtResource("3_hnne4")
-
-[node name="TileBorder" type="TileMapLayer" parent="." unique_id=1636751097]
-tile_set = ExtResource("3_hnne4")
-script = ExtResource("4_vpf64")
 
 [node name="Entities" type="Node2D" parent="." unique_id=507678782]
 

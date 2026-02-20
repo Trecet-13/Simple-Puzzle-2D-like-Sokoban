@@ -16,3 +16,5 @@ func load_data():
 		data = load(_PATH)
 
 		Global.level_id = data.level
+	else:
+		Global.level_id = 0

@@ -9,11 +9,6 @@ var viewport_size : Vector2
 var target_zoom : Vector2
 var target_position : Vector2
 
-## ACCIONES
-func _ready() -> void:
-	_get_parameters()
-	_resize_camera()
-
 ## METODOS
 func _get_parameters() -> void:
 	grid_world_size = GlobalUtils.grid_to_world(Vector2i(grid_manager.width, grid_manager.height))
@@ -28,3 +23,7 @@ func _get_parameters() -> void:
 func _resize_camera() -> void:
 	position = target_position
 	zoom = target_zoom
+
+func setup_camera() -> void:
+	_get_parameters()
+	_resize_camera()

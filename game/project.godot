@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="Puzzle 2D like Sokoban"
+run/main_scene="uid://de5cy03w3s3b"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -22,7 +23,6 @@ Global="*uid://c02sqcd7vw6wy"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
-window/size/mode=3
 window/stretch/mode="canvas_items"
 
 [file_customization]

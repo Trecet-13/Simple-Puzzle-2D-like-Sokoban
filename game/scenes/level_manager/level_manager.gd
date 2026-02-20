@@ -8,7 +8,7 @@ const SCENE_LEVEL : PackedScene = preload("res://scenes/level/level.tscn")
 var id_level: int = 0
 
 ## METODOS
-func load_level_from_csv(path: String) -> Dictionary: # Obtener los datos del nivel desde el CSV y los devuelve en diccionario
+func load_level_from_txt(path: String) -> Dictionary: # Obtener los datos del nivel desde el CSV y los devuelve en diccionario
 	var file := FileAccess.open(path, FileAccess.READ)
 	if not file:
 		push_error("No se pudo abrir el archivo")
@@ -23,14 +23,15 @@ func load_level_from_csv(path: String) -> Dictionary: # Obtener los datos del ni
 	var y := 0
 
 	while file.get_position() < file.get_length():
-		var row: PackedStringArray = file.get_csv_line()
+		var line: String = file.get_line()
 
-		if row.is_empty():
+		if line.strip_edges() == "":
 			continue
 
-		grid_x = row.size()
-		for x in row.size():
-			var value := row[x].strip_edges()
+		grid_x = line.length()
+		
+		for x in line.length():
+			var value := line[x]
 			var pos : Vector2i = Vector2i(x, y)
 
 			match value:
@@ -50,15 +51,14 @@ func load_level_from_csv(path: String) -> Dictionary: # Obtener los datos del ni
 
 func load_level() -> void:
 	var path : String = _get_path()
-	var elements : Dictionary = load_level_from_csv(path)
+	var elements : Dictionary = load_level_from_txt(path)
 	var level : Level = SCENE_LEVEL.instantiate()
 	level.grid_manager.get_elements(elements["walls"], elements["boxes"], elements["targets"], elements["player"], elements["grid"])
 	level_container.add_child(level)
-
 
 func change_level():
 	pass
 
 func _get_path() -> String:
 	var id: int = Global.level_id
-	return "res://levels/level_%d.csv" % id
+	return "res://levels/level_%d.txt" % id

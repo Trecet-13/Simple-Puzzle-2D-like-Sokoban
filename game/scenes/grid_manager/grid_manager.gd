@@ -24,7 +24,7 @@ func get_elements(walls: Array[Vector2i], boxes: Array[Vector2i], targets: Array
 	width = grid.x
 
 func is_inside_grid(cell: Vector2i) -> bool: # comprueba que la posición dada este dentro de los límites
-	return cell.x >= 0 and cell.x < width and cell.y >= 0 and cell.x < height
+	return cell.x >= 0 and cell.x < width and cell.y >= 0 and cell.y < height
 
 func is_walkable(cell: Vector2) -> bool: # comprueba si se puede caminar a la celda dada
 	if wall_cells.has(cell): # Comprueba que no haya una pared en esa celda

@@ -17,17 +17,20 @@ func _ready() -> void:
 ## METODOS
 func instantiate_level(walls: Array[Vector2i], boxes: Array[Vector2i], targets: Array[Vector2i], initial_player_cell : Vector2i) -> void: # instancia todos los elementos del nivel
 	_init_walls(walls)
-	_init_player(initial_player_cell)
-	_init_boxes(boxes)
 	_init_targets(targets)
+	_init_boxes(boxes)
+	_init_player(initial_player_cell)
 
 func _init_walls(walls: Array[Vector2i]) -> void:
 	tile_set.set_cells_terrain_connect(walls, 0, 0)
 
 func _init_player(initial_player_position : Vector2i) -> void:
-	var player = SCENE_PLAYER.instantiate()
+	var player : Player = SCENE_PLAYER.instantiate()
 	entities_container.add_child(player)
 	player.position = GlobalUtils.grid_to_world(initial_player_position)
+
+	player.request_move.connect(grid_manager.try_move_player)
+	grid_manager.player_cell_changed.connect(player.update_position)
 
 func _init_boxes(boxes: Array[Vector2i]) -> void:
 	for cell in boxes:

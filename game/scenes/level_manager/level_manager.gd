@@ -19,6 +19,7 @@ func load_level_from_csv(path: String) -> Dictionary: # Obtener los datos del ni
 	var targets: Array[Vector2i] = []
 	var player: Vector2i
 	
+	var grid_x : int = 0
 	var y := 0
 
 	while file.get_position() < file.get_length():
@@ -27,6 +28,7 @@ func load_level_from_csv(path: String) -> Dictionary: # Obtener los datos del ni
 		if row.is_empty():
 			continue
 
+		grid_x = row.size()
 		for x in row.size():
 			var value := row[x].strip_edges()
 			var pos : Vector2i = Vector2i(x, y)
@@ -44,13 +46,13 @@ func load_level_from_csv(path: String) -> Dictionary: # Obtener los datos del ni
 		y += 1
 
 	file.close()
-	return { "walls": walls, "boxes": boxes, "targets": targets, "player": player }
+	return { "walls": walls, "boxes": boxes, "targets": targets, "player": player, "grid": Vector2i(grid_x, y)}
 
 func load_level() -> void:
 	var path : String = _get_path()
 	var elements : Dictionary = load_level_from_csv(path)
 	var level : Level = SCENE_LEVEL.instantiate()
-	level.grid_manager.get_elements(elements["walls"], elements["boxes"], elements["targets"], elements["player"])
+	level.grid_manager.get_elements(elements["walls"], elements["boxes"], elements["targets"], elements["player"], elements["grid"])
 	level_container.add_child(level)
 
 

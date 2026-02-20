@@ -1,12 +1,19 @@
 [gd_scene format=3 uid="uid://de5cy03w3s3b"]
 
 [ext_resource type="PackedScene" uid="uid://r3wh6uwcestr" path="res://scenes/level_manager/level_manager.tscn" id="1_hyk8p"]
+[ext_resource type="Script" uid="uid://esgjussthj0k" path="res://scenes/main/main.gd" id="1_k2fmo"]
 [ext_resource type="PackedScene" uid="uid://b5iu2k4asa2oq" path="res://scenes/game_data/game_data.tscn" id="2_iuonh"]
+[ext_resource type="Resource" uid="uid://b43traamprc64" path="res://resources/game_data.tres" id="4_l3cfh"]
 
-[node name="Main" type="Node2D" unique_id=1935906787]
+[node name="Main" type="Node2D" unique_id=1935906787 node_paths=PackedStringArray("game_data", "level_manager")]
+script = ExtResource("1_k2fmo")
+game_data = NodePath("GameData")
+level_manager = NodePath("LevelManager")
 
 [node name="LevelContainer" type="Node2D" parent="." unique_id=441758615]
 
-[node name="LevelManager" parent="." unique_id=2063061666 instance=ExtResource("1_hyk8p")]
+[node name="LevelManager" parent="." unique_id=2063061666 node_paths=PackedStringArray("level_container") instance=ExtResource("1_hyk8p")]
+level_container = NodePath("../LevelContainer")
 
 [node name="GameData" parent="." unique_id=446929334 instance=ExtResource("2_iuonh")]
+data = ExtResource("4_l3cfh")

@@ -1,4 +1,4 @@
-extends Node2D
+class_name Level extends Node2D
 
 ## REFERENCIAS
 @export var tile_set : TileMapLayer
@@ -9,6 +9,10 @@ extends Node2D
 const SCENE_PLAYER : PackedScene = preload("res://scenes/player/player.tscn")
 const SCENE_BOX : PackedScene = preload("res://scenes/box/box.tscn")
 const  SCENE_TARGET : PackedScene = preload("res://scenes/target/target.tscn")
+
+## ACCIONES
+func _ready() -> void:
+	instantiate_level(grid_manager.wall_cells, grid_manager.box_cells, grid_manager.target_cells, grid_manager.player_cell)
 
 ## METODOS
 func instantiate_level(walls: Array[Vector2i], boxes: Array[Vector2i], targets: Array[Vector2i], initial_player_cell : Vector2i) -> void: # instancia todos los elementos del nivel

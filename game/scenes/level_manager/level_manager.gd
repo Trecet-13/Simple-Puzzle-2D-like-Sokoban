@@ -1,5 +1,8 @@
 class_name LevelManager extends Node
 
+## REFERENCIAS
+@export var level_container : Node2D
+
 ## PROPIEDADES
 const SCENE_LEVEL : PackedScene = preload("res://scenes/level/level.tscn")
 var id_level: int = 0
@@ -43,5 +46,17 @@ func load_level_from_csv(path: String) -> Dictionary: # Obtener los datos del ni
 	file.close()
 	return { "walls": walls, "boxes": boxes, "targets": targets, "player": player }
 
+func load_level() -> void:
+	var path : String = _get_path()
+	var elements : Dictionary = load_level_from_csv(path)
+	var level : Level = SCENE_LEVEL.instantiate()
+	level.grid_manager.get_elements(elements["walls"], elements["boxes"], elements["targets"], elements["player"])
+	level_container.add_child(level)
+
+
 func change_level():
 	pass
+
+func _get_path() -> String:
+	var id: int = Global.level_id
+	return "res://levels/level_%d.csv" % id

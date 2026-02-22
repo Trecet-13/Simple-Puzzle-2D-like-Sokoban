@@ -12,8 +12,9 @@ level_manager = NodePath("LevelManager")
 
 [node name="LevelContainer" type="Node2D" parent="." unique_id=441758615]
 
-[node name="LevelManager" parent="." unique_id=2063061666 node_paths=PackedStringArray("level_container") instance=ExtResource("1_hyk8p")]
+[node name="LevelManager" parent="." unique_id=2063061666 node_paths=PackedStringArray("level_container", "game_data") instance=ExtResource("1_hyk8p")]
 level_container = NodePath("../LevelContainer")
+game_data = NodePath("../GameData")
 
 [node name="GameData" parent="." unique_id=446929334 instance=ExtResource("2_iuonh")]
 data = ExtResource("4_l3cfh")

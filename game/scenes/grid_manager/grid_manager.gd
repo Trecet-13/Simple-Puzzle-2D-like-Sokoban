@@ -9,7 +9,7 @@ var wall_cells : Array[Vector2i] = []
 var box_cells : Array[Vector2i] = []
 var boxes_nodes : Dictionary[Vector2i, Box] = {}
 var target_cells : Array[Vector2i] = []
-var player_cell : Vector2i
+var player_cell : Vector2i # Player cell
 var height : int # y
 var width : int # x
 
@@ -64,5 +64,4 @@ func _is_level_completed() -> void:
 	for target in target_cells:
 		if not box_cells.has(target):
 			return
-	# Aquí poner llamar al método de que el nivel se completo
-	print("level completed")
+	level_completed.emit()

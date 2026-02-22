@@ -2,10 +2,10 @@ class_name LevelManager extends Node
 
 ## REFERENCIAS
 @export var level_container : Node2D
+@export var game_data : GameData
 
 ## PROPIEDADES
 const SCENE_LEVEL : PackedScene = preload("res://scenes/level/level.tscn")
-const LEVEL_SCENE : PackedScene = preload("res://scenes/level/level.tscn")
 
 ## METODOS
 func load_level_from_txt(path: String) -> Dictionary: # Obtener los datos del nivel desde el CSV y los devuelve en diccionario
@@ -54,7 +54,7 @@ func load_level() -> void: # Función para instanciar la escena del nivel actual
 	var elements : Dictionary = load_level_from_txt(path)
 	var level : Level = SCENE_LEVEL.instantiate()
 	level.grid_manager.get_elements(elements["walls"], elements["boxes"], elements["targets"], elements["player"], elements["grid"])
-	level.grid_manager.
+	level.grid_manager.level_completed.connect(level_completed)
 	level_container.add_child(level)
 
 func change_level() -> void: # Función para cambiar de nivel
@@ -68,15 +68,18 @@ func _get_path() -> String: # Obtiene la ruta del nivel a cargar
 	var id: int = Global.level_id
 	return "res://levels/level_%d.txt" % id
 
-func _get_next_level() -> void: # Actualiza Global.level_id para el siguiente nivel
+func _update_level_id() -> void: # Actualiza Global.level_id para el siguiente nivel
 	Global.level_id += 1
 
 func level_completed() -> void:
-	pass
+	print("level completed")
+	_update_level_id()
+	game_data.save_data()
+	change_level()
 
 ## TESTING WARNING
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.echo:
 		if event.keycode == KEY_J:
-			_get_next_level()
+			_update_level_id()
 			change_level()

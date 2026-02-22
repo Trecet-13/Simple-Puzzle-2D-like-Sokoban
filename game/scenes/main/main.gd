@@ -1,8 +1,8 @@
 class_name Main extends Node2D
 
 # REFERENCIAS
-@export var game_data : GameData
-@export var level_manager : LevelManager
+@export var game_data: GameData
+@export var level_manager: LevelManager
 
 ## ACCIONES
 func _ready() -> void:

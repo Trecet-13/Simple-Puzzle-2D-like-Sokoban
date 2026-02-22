@@ -6,7 +6,7 @@ class_name GameData extends Node
 const _PATH : String = "user://partida.tres"
 
 ## METODOS
-func save_datadata():
+func save_data():
 	data.level = Global.level_id
 
 	ResourceSaver.save(data, _PATH)

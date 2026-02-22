@@ -1,10 +1,9 @@
 [gd_scene format=3 uid="uid://dltvbf7lbg1oy"]
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_58eld"]
-size = Vector2(64, 64)
+[ext_resource type="Texture2D" uid="uid://qwml0jnmhxyc" path="res://assets/sprites/Target.png" id="1_v2bc8"]
 
 [node name="Target" type="Node2D" unique_id=959252309]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=357284353]
-texture = SubResource("PlaceholderTexture2D_58eld")
+texture = ExtResource("1_v2bc8")
 centered = false

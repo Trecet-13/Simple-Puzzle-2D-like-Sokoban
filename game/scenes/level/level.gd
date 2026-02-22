@@ -37,7 +37,7 @@ func _init_player(initial_player_position : Vector2i) -> void:
 
 func _init_boxes(boxes: Array[Vector2i]) -> void:
 	for cell in boxes:
-		var box : Node2D = SCENE_BOX.instantiate()
+		var box : Box = SCENE_BOX.instantiate()
 		entities_container.add_child(box)
 		box.position = GlobalUtils.grid_to_world(cell)
 		grid_manager.boxes_nodes[cell] = box
@@ -60,5 +60,6 @@ func generate_border() -> void:
 	var visible_grid_size : Vector2i = Vector2i(x, y)
 	var grid_size : Vector2i = Vector2i(grid_manager.width, grid_manager.height)
 	var spare_grid : Vector2i = visible_grid_size - grid_size
+	@warning_ignore("integer_division")
 	var centred_spare_grid : Vector2i = spare_grid / 2
 	tile_set.set_cells_terrain_connect(GlobalUtils.get_matrix_difference(centred_spare_grid, grid_size) + tile_set.get_used_cells(),0,0)

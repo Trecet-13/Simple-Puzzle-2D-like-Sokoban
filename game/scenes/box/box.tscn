@@ -1,10 +1,11 @@
 [gd_scene format=3 uid="uid://cp44xs0jor60n"]
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_51kwt"]
-size = Vector2(64, 64)
+[ext_resource type="Texture2D" uid="uid://cf5wl42t7f7tb" path="res://assets/sprites/box.png" id="1_dry3k"]
+[ext_resource type="Script" uid="uid://dlkeqlgkfu5ch" path="res://scenes/box/box.gd" id="1_vf6jd"]
 
 [node name="Box" type="Node2D" unique_id=1628842307]
+script = ExtResource("1_vf6jd")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1123073761]
-texture = SubResource("PlaceholderTexture2D_51kwt")
+texture = ExtResource("1_dry3k")
 centered = false

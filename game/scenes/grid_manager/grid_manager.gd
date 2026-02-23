@@ -39,13 +39,11 @@ func try_move_player(cell : Vector2i) -> void:
 		if box_cells.has(try_position):
 			var index = box_cells.find(try_position)
 			var box_try_position = box_cells[index] + cell
-			if is_inside_grid(box_try_position) and is_walkable(box_try_position):
+			if is_inside_grid(box_try_position) and is_walkable(box_try_position) and not box_cells.has(box_try_position):
 				_move_box(index, box_try_position)
 				_move_player(try_position)
-				_is_level_completed()
 		else:
 			_move_player(try_position)
-			_is_level_completed()
 
 func _move_player(position: Vector2i) -> void:
 	player_cell = position
@@ -58,9 +56,9 @@ func _move_box(index: int, position: Vector2i) -> void:
 		var value = boxes_nodes[pre_position]
 		boxes_nodes.erase(pre_position)
 		boxes_nodes[box_cells[index]] = value
-		boxes_nodes[box_cells[index]].update_position(box_cells[index])
+		boxes_nodes[box_cells[index]].move_entity(box_cells[index])
 
-func _is_level_completed() -> void:
+func is_level_completed() -> void:
 	for target in target_cells:
 		if not box_cells.has(target):
 			return

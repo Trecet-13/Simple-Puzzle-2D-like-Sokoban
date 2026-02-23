@@ -33,7 +33,8 @@ func _init_player(initial_player_position : Vector2i) -> void:
 	player.position = GlobalUtils.grid_to_world(initial_player_position)
 
 	player.request_move.connect(grid_manager.try_move_player)
-	grid_manager.player_cell_changed.connect(player.update_position)
+	player.entity_moved.connect(grid_manager.is_level_completed)
+	grid_manager.player_cell_changed.connect(player.move_entity)
 
 func _init_boxes(boxes: Array[Vector2i]) -> void:
 	for cell in boxes:

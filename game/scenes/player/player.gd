@@ -1,33 +1,26 @@
-class_name Player extends Node2D
+class_name Player extends Entity
 
 ## SEÑALES
 signal request_move
 
-## PROPIEDADES
-var is_moving : bool = false
 
 ## ACCIONES
-func _input(event: InputEvent) -> void:
-	movement(event)
+func _process(_delta: float) -> void:
+	movement()
 
 ## METODOS
-func movement(event : InputEvent) -> void:
-	if not is_moving:
-		if event.is_action("move_up") and event.pressed:
-			request_move.emit(Vector2i.UP)
-		elif event.is_action("move_right") and event.pressed:
-			request_move.emit(Vector2i.RIGHT)
-		elif event.is_action("move_down") and event.pressed:
-			request_move.emit(Vector2i.DOWN)
-		elif event.is_action("move_left") and event.pressed:
-			request_move.emit(Vector2i.LEFT)
+func movement() -> void:
+	if is_moving:
+		return
 
-func update_position(cell: Vector2i) -> void:
-	is_moving = true
-	var new_position: Vector2 = GlobalUtils.grid_to_world(cell)
-	var tween: Tween = create_tween()
-	tween.tween_property(self, "position", new_position, Global.time_tween)
-	tween.tween_callback(moved)
+	var dir := Input.get_vector("move_left", "move_right", "move_up", "move_down", 0.2)
 
-func moved() -> void:
-	is_moving = false
+	var grid_dir := Vector2i.ZERO
+
+	if abs(dir.x) > abs(dir.y):
+		grid_dir = Vector2i(sign(dir.x), 0)
+	elif abs(dir.y) > abs(dir.x):
+		grid_dir = Vector2i(0, sign(dir.y))
+
+	if grid_dir != Vector2i.ZERO:
+		request_move.emit(grid_dir)

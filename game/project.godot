@@ -13,11 +13,13 @@ config_version=5
 config/name="Puzzle 2D like Sokoban"
 run/main_scene="uid://de5cy03w3s3b"
 config/features=PackedStringArray("4.6", "Forward Plus")
+run/max_fps=60
 config/icon="res://icon.svg"
 
 [autoload]
 
 Global="*uid://c02sqcd7vw6wy"
+ScenesTransitionsGlobal="*uid://ds8rpvhs15r10"
 
 [display]
 
@@ -25,6 +27,7 @@ window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/size/mode=2
 window/stretch/mode="canvas_items"
+window/vsync/vsync_mode=0
 
 [file_customization]
 
@@ -77,4 +80,7 @@ move_left={
 
 [rendering]
 
+textures/canvas_textures/default_texture_repeat=1
 rendering_device/driver.windows="d3d12"
+2d/snap/snap_2d_transforms_to_pixel=true
+2d/snap/snap_2d_vertices_to_pixel=true

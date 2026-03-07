@@ -61,8 +61,11 @@ func change_level() -> void: # Función para cambiar de nivel
 	var level: Level
 	if level_container.get_children():
 		level = level_container.get_child(0)
+	ScenesTransitionsGlobal.animation_player.play("level_transition_in")
+	await ScenesTransitionsGlobal.animation_player.animation_finished
 	level.queue_free()
 	load_level()
+	ScenesTransitionsGlobal.animation_player.play("level_transition_out")
 
 func _get_path() -> String: # Obtiene la ruta del nivel a cargar
 	var id: int = Global.level_id

@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Puzzle 2D like Sokoban"
 run/main_scene="uid://de5cy03w3s3b"
-config/features=PackedStringArray("4.6", "Forward Plus")
+config/features=PackedStringArray("4.7", "Forward Plus")
 run/max_fps=60
 config/icon="res://icon.svg"
 
